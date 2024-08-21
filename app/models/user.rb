@@ -1,5 +1,6 @@
 class User < ApplicationRecord
 rolify
+has_one :profile
 validates :name, presence: true
 validates :phone, presence: true
 validates :address, presence: true

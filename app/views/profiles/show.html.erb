@@ -1,0 +1,9 @@
+<h1>Профіль користувача</h1>
+
+<p><strong>Ім'я:</strong> <%= @user.name %></p>
+<p><strong>Email:</strong> <%= @user.email %></p>
+<p><strong>Адреса:</strong> <%= @user.address %></p>
+<p><strong>Телефон:</strong> <%= @user.phone %></p>
+
+<%= link_to 'Редагувати профіль', edit_profile_path %>
+<%= link_to 'Повернутися до головної', root_path %>

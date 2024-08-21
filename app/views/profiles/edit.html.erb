@@ -1,0 +1,41 @@
+<h1>Редагувати профіль</h1>
+
+<%= form_with(model: @user, url: profile_path, local: true) do |form| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> завадило зберегти профіль:</h2>
+      <ul>
+        <% @user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name, "Ім'я" %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :email, "Email" %>
+    <%= form.email_field :email %>
+  </div>
+
+  <div class="field">
+    <%= form.label :address, "Адреса" %>
+    <%= form.text_field :address %>
+  </div>
+
+  <div class="field">
+    <%= form.label :phone, "Телефон" %>
+    <%= form.text_field :phone %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit 'Оновити профіль' %>
+  </div>
+<% end %>
+
+<%= link_to 'Назад до профілю', profile_path %>
+<%= link_to 'Повернутися до головної', root_path %>
