@@ -13,7 +13,7 @@
 
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Онлайн магазин</a>
+  <a class="navbar-brand" href="#"><%= link_to 'Онлайн магазин', root_path %></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -21,21 +21,42 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" href="../products">Продукти</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="../carts/index">Кошик</a>
+        <%= link_to 'Продукти', products_path, class: 'nav-link' %>
       </li>
       <% if user_signed_in? %>
-        <%= link_to 'Мій профіль', profile_path %>
-        <%= link_to 'Вийти', destroy_user_session_path, method: :delete %>
+        <% if current_user.has_role?(:customer) %>
+          <li class="nav-item">
+            <%= link_to 'Кошик', carts_path, class: 'nav-link' %>
+          </li>
+        <% elsif current_user.has_role?(:manufacturer) %>
+          <li class="nav-item">
+            <%= link_to 'Додати продукт', new_product_path, class: 'nav-link' %>
+          </li>
+        <% end %>
+      <% end %>
+    </ul>
+    <ul class="navbar-nav ml-auto">
+      <% if user_signed_in? %>
+        <li class="nav-item">
+          <%= link_to 'Мій профіль', profile_path, class: 'nav-link' %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'Вийти', destroy_user_session_path, method: :delete, class: 'nav-link' %>
+        </li>
       <% else %>
-        <%= link_to 'Увійти', new_user_session_path %>
-        <%= link_to 'Зареєструватися', new_user_registration_path %>
+        <li class="nav-item">
+          <%= link_to 'Увійти', new_user_session_path, class: 'nav-link' %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'Зареєструватися', new_user_registration_path, class: 'nav-link' %>
+        </li>
       <% end %>
     </ul>
   </div>
 </nav>
-<%= yield %>
+
+<div class="container mt-4">
+  <%= yield %>
+</div>
 </body>
 </html>

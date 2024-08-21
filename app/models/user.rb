@@ -1,10 +1,8 @@
 class User < ApplicationRecord
 rolify
 has_one :profile
-validates :name, presence: true
-validates :phone, presence: true
-validates :address, presence: true
-validates :role, presence: true
+has_many :products
+validates :name, :phone, :address, :role, presence: true
   after_create :assign_default_role
 
   def assign_default_role
