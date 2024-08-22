@@ -24,15 +24,15 @@
         <%= link_to 'Продукти', products_path, class: 'nav-link' %>
       </li>
       <% if user_signed_in? %>
-        <%# if current_user.has_role?(:customer) %>
-<!--          <li class="nav-item">-->
-            <%#= link_to 'Кошик', carts_path, class: 'nav-link' %>
-<!--          </li>-->
+        <% if current_user.has_role?(:customer) %>
+          <li class="nav-item">
+            <%= link_to 'Кошик', cart_path, class: 'nav-link' %>
+          </li>
         <% elsif current_user.has_role?(:manufacturer) %>
           <li class="nav-item">
             <%= link_to 'Додати продукт', new_product_path, class: 'nav-link' %>
           </li>
-        <%# end %>
+        <% end %>
       <% end %>
     </ul>
     <ul class="navbar-nav ml-auto">
@@ -60,3 +60,4 @@
 </div>
 </body>
 </html>
+

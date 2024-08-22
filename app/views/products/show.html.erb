@@ -5,7 +5,10 @@
 <p><strong>Category:</strong> <%= @product.category.name %></p>
 
 <%= link_to 'Back', products_path, class: 'btn btn-secondary' %>
+
 <% if current_user.has_role?(:manufacturer) %>
   <%= link_to 'Edit', edit_product_path(@product), class: 'btn btn-warning' %>
   <%= link_to 'Delete', @product, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+<% elsif current_user.has_role?(:customer) %>
+  <%= link_to 'Add to Cart', add_product_cart_path(product_id: @product.id), data: { turbo_method: :post}, class: 'btn btn-primary' %>
 <% end %>
