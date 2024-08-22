@@ -1,6 +1,7 @@
 class ProductsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_product, only: %i[show edit update destroy]
+  before_action :authorize_manufacturer!, only: %i[new create edit update destroy]
 
   def index
     if current_user.has_role?(:customer)
@@ -8,6 +9,9 @@ class ProductsController < ApplicationController
     elsif current_user.has_role?(:manufacturer)
       @products = current_user.products.includes(:category)
     end
+  end
+
+  def show
   end
 
   def new
@@ -24,8 +28,6 @@ class ProductsController < ApplicationController
       render :new
     end
   end
-
-  def show; end
 
   def edit
     @categories = Category.all
@@ -53,5 +55,11 @@ class ProductsController < ApplicationController
 
   def product_params
     params.require(:product).permit(:name, :description, :price, :category_id)
+  end
+
+  def authorize_manufacturer!
+    unless current_user.has_role?(:manufacturer)
+      redirect_to root_path, alert: 'You are not authorized to perform this action.'
+    end
   end
 end

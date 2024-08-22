@@ -1,10 +1,11 @@
 <h1>Products</h1>
 
 <% if current_user.has_role?(:manufacturer) %>
-  <%= link_to 'Add Product', new_product_path %>
+  <%= link_to 'Add Product', new_product_path, class: 'btn btn-primary' %>
+  <%= link_to 'Add Category', new_category_path, class: 'btn btn-secondary ml-2' %>
 <% end %>
 
-<table>
+<table class="table table-striped">
   <thead>
   <tr>
     <th>Name</th>
@@ -21,11 +22,13 @@
       <td><%= product.description %></td>
       <td><%= product.price %></td>
       <td><%= product.category.name %></td>
-      <td><%= link_to 'Show', product %></td>
-      <% if current_user.has_role?(:manufacturer) %>
-        <td><%= link_to 'Edit', edit_product_path(product) %></td>
-        <td><%= link_to 'Delete', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      <% end %>
+      <td>
+        <%= link_to 'Show', product, class: 'btn btn-info' %>
+        <% if current_user.has_role?(:manufacturer) %>
+          <%= link_to 'Edit', edit_product_path(product), class: 'btn btn-warning' %>
+          <%= link_to 'Delete', product, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+        <% end %>
+      </td>
     </tr>
   <% end %>
   </tbody>
