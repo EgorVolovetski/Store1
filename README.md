@@ -1,24 +1,25 @@
-# README
+# Anthony Karpovych & Egor Volovetski CS33 - Online Furniture Store
+## Getting started
+1. Clone this repository to your local machine:
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+```bash
+  git clone https://github.com/diana-spieser/Online-store.git
+  ```
 
-Things you may want to cover:
+2. Change the project directory
 
-* Ruby version
+ ```bash
+  cd Online-store
+```
 
-* System dependencies
+3. Create , seed, migrathe your db
 
-* Configuration
+ ```bash
+  rails db:create db:seed db:migrate
+```
 
-* Database creation
+4.Start the server
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```bash
+  rails server 
+```
