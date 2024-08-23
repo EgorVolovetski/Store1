@@ -3,7 +3,7 @@
 1. Clone this repository to your local machine:
 
 ```bash
-  git clone https://github.com/diana-spieser/Online-store.git
+  git clone https://github.com/EgorVolovetski/Store1.git
   ```
 
 2. Change the project directory
